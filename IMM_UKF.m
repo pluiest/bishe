@@ -12,17 +12,7 @@ tic
         %j为选中的红外线组合的序号
         
         %为此，首先将基于各种异质传感器组合的CKF滤波得出的结果保存
-        
-      
-    %3个目标    
-     for num=1:3 
-         %变量说明：以下均为cell(36*36,3)
-%以匀速直线运动模型cv为例，P_kv：cv模型下存储的3个目标的更新的协方差
-%X_kv：更新的状态估计
-%Z_kv ：量测预测值
-%Sv1：新息方差估计 
-%P_k_k_1_qv：预测误差协方差P_k_k_1
-        P_kv=cell(36*36,3);
+          P_kv=cell(36*36,3);
         X_kv=cell(36*36,3);
         Z_kv=cell(36*36,3);
         Sv1=cell(36*36,3);
@@ -58,6 +48,16 @@ tic
           select_ca=cell(1,400);
           select_ct=cell(1,400);
             
+      
+    %3个目标    
+     for num=1:3 
+         %变量说明：以下均为cell(36*36,3)
+%以匀速直线运动模型cv为例，P_kv：cv模型下存储的3个目标的更新的协方差
+%X_kv：更新的状态估计
+%Z_kv ：量测预测值
+%Sv1：新息方差估计 
+%P_k_k_1_qv：预测误差协方差P_k_k_1
+      
           %%%%%%%%%IMM滤波算法%%%%%%%%%%
           %模型初始化
           %H1，H2，H3模型的状态转移矩阵9*9
@@ -193,6 +193,6 @@ tic
        end
      end
      
-     save IMM_UKF_all_1129.mat;
-     save IMM_UKF_1129.mat  X_imm result_zA xA_b xB_b xC_b;
+     save IMM_UKF_all_1202.mat;
+     save IMM_UKF_1202_todraw.mat  X_imm result_zA xA_b xB_b xC_b;
      toc

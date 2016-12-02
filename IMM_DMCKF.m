@@ -12,17 +12,7 @@ tic
         %j为选中的红外线组合的序号
         
         %为此，首先将基于各种异质传感器组合的CKF滤波得出的结果保存
-        
-      
-    %3个目标    
-     for num=1:3
-         %变量说明：以下均为cell(36*36,3)
-%以匀速直线运动模型cv为例，P_kv：cv模型下存储的3个目标的更新的协方差
-%X_kv：更新的状态估计
-%Z_kv ：量测预测值
-%Sv1：新息方差估计 
-%P_k_k_1_qv：预测误差协方差P_k_k_1
-        P_kv=cell(36*36,3);
+         P_kv=cell(36*36,3);
         X_kv=cell(36*36,3);
         Z_kv=cell(36*36,3);
         Sv1=cell(36*36,3);
@@ -57,6 +47,50 @@ tic
           select_cv=cell(1,400);
           select_ca=cell(1,400);
           select_ct=cell(1,400);
+      
+    %3个目标    
+     for num=1:3
+         %变量说明：以下均为cell(36*36,3)
+%以匀速直线运动模型cv为例，P_kv：cv模型下存储的3个目标的更新的协方差
+%X_kv：更新的状态估计
+%Z_kv ：量测预测值
+%Sv1：新息方差估计 
+%P_k_k_1_qv：预测误差协方差P_k_k_1
+%         P_kv=cell(36*36,3);
+%         X_kv=cell(36*36,3);
+%         Z_kv=cell(36*36,3);
+%         Sv1=cell(36*36,3);
+%         P_k_k_1_qv=cell(36*36,3);
+%         
+%            P_ka=cell(36*36,3);
+%         X_ka=cell(36*36,3);
+%         Z_ka=cell(36*36,3);
+%         Sv2=cell(36*36,3);
+%         P_k_k_1_qa=cell(36*36,3);
+%            P_kt=cell(36*36,3);
+%         X_kt=cell(36*36,3);
+%         Z_kt=cell(36*36,3);
+%         Sv3=cell(36*36,3);
+%         P_k_k_1_qt=cell(36*36,3);
+%         
+%         renyi_cv=zeros(36*36,400);
+%          renyi_ca=zeros(36*36,400);
+%           renyi_ct=zeros(36*36,400);
+%           
+%           renyi_cv_max=zeros(1,400);
+%           renyi_ca_max=zeros(1,400);
+%           renyi_ct_max=zeros(1,400);
+%           
+%           max_cv_num=zeros(1,400);
+%           max_ca_num=zeros(1,400);
+%           max_ct_num=zeros(1,400);
+%           
+%           renyi_cv_max_num=cell(400,3);
+%           renyi_ca_max_num=cell(400,3);
+%           renyi_ct_max_num=cell(400,3);
+%           select_cv=cell(1,400);
+%           select_ca=cell(1,400);
+%           select_ct=cell(1,400);
             
           %%%%%%%%%IMM滤波算法%%%%%%%%%%
           %模型初始化
@@ -194,6 +228,6 @@ tic
      end
      
  
-    save IMM_DMCKF_all_1201_2.mat  
+    save IMM_DMCKF_all_1202.mat  
 
      toc
