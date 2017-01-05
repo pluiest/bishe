@@ -7,32 +7,32 @@ function [C_k_CMF,zA] = getZAByCMF(A,B,s)
 % 假设每台雷达的跟踪能力为1 每台红外的跟踪能力也为1
 % 那么传感器组总组数为：S=36×36
     if(s==1)
-    measR1=gen_measR(R1,xA_b,1,500);
-    measR2=gen_measR(R2,xA_b,1,500);
-    measR3=gen_measR(R3,xA_b,1,500);
-    measR4=gen_measR(R4,xA_b,1,500);
-    measIR1=gen_measIR(IR1,xA_b,1,500);
-    measIR2=gen_measIR(IR2,xA_b,1,500);
-    measIR3=gen_measIR(IR3,xA_b,1,500);
-    measIR4=gen_measIR(IR4,xA_b,1,500);
+    measR1=gen_measR(R1,xA_b,1,200);
+    measR2=gen_measR(R2,xA_b,1,200);
+    measR3=gen_measR(R3,xA_b,1,200);
+    measR4=gen_measR(R4,xA_b,1,200);
+    measIR1=gen_measIR(IR1,xA_b,1,200);
+    measIR2=gen_measIR(IR2,xA_b,1,200);
+    measIR3=gen_measIR(IR3,xA_b,1,200);
+    measIR4=gen_measIR(IR4,xA_b,1,200);
     elseif (s==2)
-     measR1=gen_measR(R1,xB_b,1,500);
-    measR2=gen_measR(R2,xB_b,1,500);
-    measR3=gen_measR(R3,xB_b,1,500);
-    measR4=gen_measR(R4,xB_b,1,500);
-    measIR1=gen_measIR(IR1,xB_b,1,500);
-    measIR2=gen_measIR(IR2,xB_b,1,500);
-    measIR3=gen_measIR(IR3,xB_b,1,500);
-    measIR4=gen_measIR(IR4,xB_b,1,500);
+     measR1=gen_measR(R1,xB_b,1,200);
+    measR2=gen_measR(R2,xB_b,1,200);
+    measR3=gen_measR(R3,xB_b,1,200);
+    measR4=gen_measR(R4,xB_b,1,200);
+    measIR1=gen_measIR(IR1,xB_b,1,200);
+    measIR2=gen_measIR(IR2,xB_b,1,200);
+    measIR3=gen_measIR(IR3,xB_b,1,200);
+    measIR4=gen_measIR(IR4,xB_b,1,200);
     else
-     measR1=gen_measR(R1,xC_b,1,500);
-    measR2=gen_measR(R2,xC_b,1,500);
-    measR3=gen_measR(R3,xC_b,1,500);
-    measR4=gen_measR(R4,xC_b,1,500);
-    measIR1=gen_measIR(IR1,xC_b,1,500);
-    measIR2=gen_measIR(IR2,xC_b,1,500);
-    measIR3=gen_measIR(IR3,xC_b,1,500);
-    measIR4=gen_measIR(IR4,xC_b,1,500);
+     measR1=gen_measR(R1,xC_b,1,200);
+    measR2=gen_measR(R2,xC_b,1,200);
+    measR3=gen_measR(R3,xC_b,1,200);
+    measR4=gen_measR(R4,xC_b,1,200);
+    measIR1=gen_measIR(IR1,xC_b,1,200);
+    measIR2=gen_measIR(IR2,xC_b,1,200);
+    measIR3=gen_measIR(IR3,xC_b,1,200);
+    measIR4=gen_measIR(IR4,xC_b,1,200);
     end
 % 当选中两部雷达两部红外线
     if( length(A) ~=1  && length(B) ~=1)

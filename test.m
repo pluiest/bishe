@@ -1,19 +1,8 @@
-%第一题 格布拉斯准则 用matlab实现可疑数据剔除(n=10，α=5%)
-clear all
+clear 
 
-A=[5,4,8,7,1,4,15,4,5,6]; 
-a=size(A); 
-% N=sort(A); 
-X=mean(A); 
-O=std(A);
-T=abs((A-X)/O); 
-Tna=2.18; 
-j=0; 
-for i=a(2):-1:1 
-    if(T(i)>=Tna)         
-        j=j+1;         
-        Tc(j)=A(i);       
-        A(i)=[];     
-    end
-end
-fprintf('剔除可疑数据后，得到的数组 为：%d  %d  %d  %d  %d %d  %d  %d  %d  %d ',A);
+syms x x1 x2 x3 x4
+l1=collect((x-x2)*(x-x3)*(x-x4)/((x1-x2)*(x1-x3)*(x1-x4)))
+l2=collect((x-x1)*(x-x3)*(x-x4)/((x2-x1)*(x2-x3)*(x2-x4)))
+l3=collect( (x-x1)*(x-x2)*(x-x4)/((x3-x1)*(x3-x2)*(x3-x4)) )
+l4=collect( (x-x1)*(x-x2)*(x-x3)/((x4-x1)*(x4-x2)*(x4-x3)) )
+fai=simplify(l1*sqrt(x1)+l2*sqrt(x2)+l3*sqrt(x3)+l4*sqrt(x4))

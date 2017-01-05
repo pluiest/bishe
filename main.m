@@ -222,6 +222,6 @@ for k=1:36
     end
 end
 
-save main1.mat 
+save main2.mat 
 toc
 

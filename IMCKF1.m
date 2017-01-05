@@ -1,11 +1,10 @@
-function [P_k,X_k,zhat,Pzminus,P_k_k_1_q]=DMCKF(H,G,Q,R,Z,X0,P0)
-%函数作用：非线性系统的容积卡尔曼滤波
+function [P_k,X_k,zhat,Pzminus,P_k_k_1_q]=IMCKF1(H,G,Q,R,Z,X0,P0)
+%函数作用：非线性系统的改进的容积卡尔曼滤波
 %输入参数：H-状态转移矩阵；G-模型的噪声分布矩阵；F-观测矩阵； Q-过程噪声协方差矩阵；R-量测噪声的协方差矩阵；Z-测量值
 %输出参数：P_k_k-1 预测估计协方差矩阵；P_k-更新的协方差矩阵；X_k-更新的状态估计
-% P0=nearestSPD(P0);
-[V1,D1]=eig(P0);
- k1=length(unique(diag(D1)));  %相异特征根的个数
-% D1=nearestSPD(D1);
+P0=nearestSPD(P0);
+[V1,D1]=schur(P0);
+D1=nearestSPD(D1);
 Shat=V1*sqrt(D1)*V1';
 
 m=18;%容积点数目
@@ -21,13 +20,10 @@ kesi=sqrt(m/2)*[eye(0.5*m) -eye(0.5*m)];
   P_k_k_1_q=P_k_k_1;
    
 %下面是量测更新
-% P_k_k_1_q=nearestSPD(P_k_k_1_q);
-[V,D]=eig(P_k_k_1_q);
- k=length(unique(diag(D)));  %相异特征根的个数
-% D=nearestSPD(D);
+P_k_k_1_q=nearestSPD(P_k_k_1_q);
+[V,D]=schur(P_k_k_1_q);
+D=nearestSPD(D);
 Sminus=V*sqrt(D)*V';  %参见赵利强论文
-
-
 %     Sminus = chol(P_k_k_1_q)';  %因式分解
     for cpoint = 1 : m
         rjpoint1(:, cpoint) = Sminus * kesi(:, cpoint) + xminus;  %容积点估计

@@ -15,7 +15,7 @@ kesi=sqrt(m/2)*[eye(0.5*m) -eye(0.5*m)];
  P_k_k_1 = w*(Xminus * Xminus') - xminus * xminus' + G*Q*G'; %预测误差协方差P_k_k_1
  P_k_k_1_q=P_k_k_1;
 %下面是量测更新
-P_k_k_1_q=nearestSPD(P_k_k_1_q);
+ P_k_k_1_q=nearestSPD(P_k_k_1_q);
     Sminus = chol(P_k_k_1_q)';  %cholesky分解
     for cpoint = 1 : m
         rjpoint1(:, cpoint) = Sminus * kesi(:, cpoint) + xminus;  %容积点估计

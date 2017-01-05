@@ -228,8 +228,7 @@ tic
      end
      
  
-%      save IMM_CKF_all_1129_2.mat  %完全修改的IMMCKF
-%      save IMM_CKF_1129_todraw_2.mat X_imm result_zA xA_b xB_b xC_b; %完全修改的IMMCKF做图
-      save IMM_CKF_all_1202.mat  %完全修改的IMMCKF
-     save IMM_CKF_1202_todraw.mat  X_imm result_zA xA_b xB_b xC_b; %完全修改的IMMCKF做图
+
+      save IMM_CKF_all_1230_1.mat  %完全修改的IMMCKF
+   
      toc

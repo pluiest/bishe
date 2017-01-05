@@ -1,5 +1,5 @@
 clear all;clc;
-load main2.mat
+load main1.mat
 
 warning off
 %%%%%%参数简介%%%%%%%%%%%
@@ -156,9 +156,9 @@ tic
             for t=1:36
                 for j=1:36
                     for s=1:3  %3个目标
-                    [P_kv{(t-1)*36+j,s },X_kv{(t-1)*36+j,s },Z_kv{(t-1)*36+j,s },Sv1{(t-1)*36+j,s },P_k_k_1_qv{(t-1)*36+j,s }]     =       DMCKF(H1,G1,Q1,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x1_m,p1_k_1);%匀速直线运动  P_kv:滤波误差协方差 X_kv-更新的状态估计 Z_kv:量测预测值
-                    [P_ka{(t-1)*36+j,s },X_ka{(t-1)*36+j,s },Z_ka{(t-1)*36+j,s },Sv2{(t-1)*36+j,s },P_k_k_1_qa{(t-1)*36+j,s }]     =     DMCKF(H2,G2,Q1,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x2_m,p2_k_1);
-                    [P_kt{(t-1)*36+j,s },X_kt{(t-1)*36+j,s },Z_kt{(t-1)*36+j,s },Sv3{(t-1)*36+j,s },P_k_k_1_qt{(t-1)*36+j,s }]     =          DMCKF(H3,G3,Q2,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x3_m,p3_k_1);
+                    [P_kv{(t-1)*36+j,s },X_kv{(t-1)*36+j,s },Z_kv{(t-1)*36+j,s },Sv1{(t-1)*36+j,s },P_k_k_1_qv{(t-1)*36+j,s }]     =       IMCKF(H1,G1,Q1,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x1_m,p1_k_1);%匀速直线运动  P_kv:滤波误差协方差 X_kv-更新的状态估计 Z_kv:量测预测值
+                    [P_ka{(t-1)*36+j,s },X_ka{(t-1)*36+j,s },Z_ka{(t-1)*36+j,s },Sv2{(t-1)*36+j,s },P_k_k_1_qa{(t-1)*36+j,s }]     =     IMCKF(H2,G2,Q1,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x2_m,p2_k_1);
+                    [P_kt{(t-1)*36+j,s },X_kt{(t-1)*36+j,s },Z_kt{(t-1)*36+j,s },Sv3{(t-1)*36+j,s },P_k_k_1_qt{(t-1)*36+j,s }]     =          IMCKF(H3,G3,Q2,C_k_CMF{(t-1)*36+j,s },result_zA{(t-1)*36+j,s }(:,k),x3_m,p3_k_1);
                     end
                 end
             end
@@ -191,9 +191,9 @@ tic
           %%%%%%%%%%%%%%%  这块有问题  %%%%%%%%%%%%%%%%%%%%%%%%%%%
           
         
-           [P_kv_select,X_kv_select,Z_kv_select,Sv1_select,P_k_k_1_qv_select]=DMCKF(H1,G1,Q1,C_k_CMF{max_cv_num(1,k),num},result_zA{max_cv_num(1,k),num}(:,k),x1_m,p1_k_1);%匀速直线运动  P_kv:滤波误差协方差 X_kv-更新的状态估计 Z_kv:量测预测值
-           [P_ka_select,X_ka_select,Z_ka_select,Sv2_select,P_k_k_1_qa_select]=DMCKF(H2,G2,Q1,C_k_CMF{max_ca_num(1,k),num},result_zA{max_ca_num(1,k),num}(:,k),x2_m,p2_k_1);
-           [P_kt_select,X_kt_select,Z_kt_select,Sv3_select,P_k_k_1_qt_select]=DMCKF(H3,G3,Q2,C_k_CMF{max_ct_num(1,k),num},result_zA{ max_ct_num(1,k),num}(:,k),x3_m,p3_k_1);
+           [P_kv_select,X_kv_select,Z_kv_select,Sv1_select,P_k_k_1_qv_select]=IMCKF(H1,G1,Q1,C_k_CMF{max_cv_num(1,k),num},result_zA{max_cv_num(1,k),num}(:,k),x1_m,p1_k_1);%匀速直线运动  P_kv:滤波误差协方差 X_kv-更新的状态估计 Z_kv:量测预测值
+           [P_ka_select,X_ka_select,Z_ka_select,Sv2_select,P_k_k_1_qa_select]=IMCKF(H2,G2,Q1,C_k_CMF{max_ca_num(1,k),num},result_zA{max_ca_num(1,k),num}(:,k),x2_m,p2_k_1);
+           [P_kt_select,X_kt_select,Z_kt_select,Sv3_select,P_k_k_1_qt_select]=IMCKF(H3,G3,Q2,C_k_CMF{max_ct_num(1,k),num},result_zA{ max_ct_num(1,k),num}(:,k),x3_m,p3_k_1);
                  
             v1=result_zA{ max_cv_num(1,k),num}(:,k)-Z_kv_select(:,1);
             v2=result_zA{max_ca_num(1,k),num}(:,k)-Z_ka_select(:,1);
@@ -229,6 +229,6 @@ tic
      end
      
  
-    save IMM_DMCKF_all_1230_2
+    save IMM_IMCKF_all_2017_1_3
 
      toc
